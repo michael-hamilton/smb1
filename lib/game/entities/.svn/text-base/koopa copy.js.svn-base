@@ -1,0 +1,24 @@
+ig.module( 
+	'game.entities.goomba' 
+)
+.requires(
+	'game.entities.enemy'
+)
+.defines(function(){
+
+EntityGoomba = EntityEnemy.extend({
+	animSheet: new ig.AnimationSheet( 'media/mario/goombas_overworld_sprites.png', 16, 16),
+	bounciness:1,
+	check: function(other){
+		console.log("mario: "+Math.floor(other.pos.y));
+		console.log("goomba: "+this.pos.y);
+		if(this.pos.y-other.pos.y>15 && !other.standing){
+			this.kill();
+			console.log("touch goomba");
+		}
+	},
+	minBounceVelocity:0,
+	vel: {x:20,y:0}
+});
+
+});
